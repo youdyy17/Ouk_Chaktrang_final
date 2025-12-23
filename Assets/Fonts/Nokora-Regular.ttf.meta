@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e1b4fd7d751681a4faf9a528b14f8f4d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 1
+  forceTextureCase: -1
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Nokora Regular
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 88253edd2a475394c8384da4e22d71ba, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
