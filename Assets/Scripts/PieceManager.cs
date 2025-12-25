@@ -71,6 +71,10 @@ public class PieceManager : MonoBehaviour
         if (mTimerController == null)
             mTimerController = GetComponent<TimerController>();
         
+        // Auto-find StatusOverlay if not assigned
+        if (mStatusOverlay == null)
+            mStatusOverlay = FindFirstObjectByType<StatusOverlay>();
+        
         mWhitePieces = CreatePieces(Color.white, new Color32(255, 255, 255, 255), wPieceOrder);
 
         mBlackPieces = CreatePieces(
@@ -236,25 +240,40 @@ public class PieceManager : MonoBehaviour
         }
 
         // Show UI overlay internally only if not controlled externally
-        if (!controlStatusExternally && mStatusOverlay != null)
+        if (!controlStatusExternally)
         {
-            switch (endState)
+            if (mStatusOverlay == null)
             {
-                case EndState.Checkmate:
-                    if (winnerColor != Color.clear)
-                        mStatusOverlay.ShowWin(winnerColor);
-                    else
-                        mStatusOverlay.ShowCheckmate();
-                    break;
-                case EndState.Stalemate:
-                    mStatusOverlay.ShowDraw();
-                    break;
-                case EndState.Check:
-                    mStatusOverlay.ShowCheck();
-                    break;
-                default:
-                    mStatusOverlay.HideAll();
-                    break;
+                Debug.LogWarning("PieceManager: mStatusOverlay is null! Trying to find it...");
+                mStatusOverlay = FindFirstObjectByType<StatusOverlay>();
+            }
+            
+            if (mStatusOverlay != null)
+            {
+                switch (endState)
+                {
+                    case EndState.Checkmate:
+                        Debug.Log("PieceManager: Showing Checkmate/Win UI");
+                        if (winnerColor != Color.clear)
+                            mStatusOverlay.ShowWin(winnerColor);
+                        else
+                            mStatusOverlay.ShowCheckmate();
+                        break;
+                    case EndState.Stalemate:
+                        Debug.Log("PieceManager: Showing Draw UI");
+                        mStatusOverlay.ShowDraw();
+                        break;
+                    case EndState.Check:
+                        mStatusOverlay.ShowCheck();
+                        break;
+                    default:
+                        mStatusOverlay.HideAll();
+                        break;
+                }
+            }
+            else
+            {
+                Debug.LogError("PieceManager: Could not find StatusOverlay!");
             }
         }
 

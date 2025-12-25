@@ -200,6 +200,12 @@ public abstract class BasePiece : EventTrigger
     #region Events
     public override void OnBeginDrag(PointerEventData eventData)
     {
+        // Don't allow dragging if game is paused
+        if (PauseButtonController.Instance != null && PauseButtonController.Instance.IsPaused())
+        {
+            return;
+        }
+        
         base.OnBeginDrag(eventData);
 
         // Test for cells
@@ -223,6 +229,12 @@ public abstract class BasePiece : EventTrigger
 
     public override void OnDrag(PointerEventData eventData)
     {
+        // Don't allow dragging if game is paused
+        if (PauseButtonController.Instance != null && PauseButtonController.Instance.IsPaused())
+        {
+            return;
+        }
+        
         base.OnDrag(eventData);
 
         // Follow pointer
@@ -245,6 +257,12 @@ public abstract class BasePiece : EventTrigger
 
     public override void OnEndDrag(PointerEventData eventData)
     {
+        // Don't process if game is paused
+        if (PauseButtonController.Instance != null && PauseButtonController.Instance.IsPaused())
+        {
+            return;
+        }
+        
         base.OnEndDrag(eventData);
 
         // Hide

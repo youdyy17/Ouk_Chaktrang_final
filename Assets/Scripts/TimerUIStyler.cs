@@ -77,7 +77,7 @@ public class TimerUIStyler : MonoBehaviour
     private void Awake()
     {
         if (timer == null)
-            timer = FindObjectOfType<TimerController>();
+            timer = FindFirstObjectByType<TimerController>();
     }
 
     private void Start()
@@ -206,7 +206,7 @@ public class TimerUIStyler : MonoBehaviour
         tmp.fontSize = fontSize;
         tmp.color = baseColor;
         tmp.alignment = TextAlignmentOptions.Center;
-        tmp.enableWordWrapping = false;
+        tmp.textWrappingMode = TextWrappingModes.NoWrap;
         tmp.fontStyle = bold ? FontStyles.Bold : FontStyles.Normal;
 
         if (enableOutline)

@@ -96,7 +96,7 @@ public class TimerController : MonoBehaviour
         UpdateTimerDisplay();
         
         // Reset the timer UI styler if present
-        TimerUIStyler styler = FindObjectOfType<TimerUIStyler>();
+        TimerUIStyler styler = FindFirstObjectByType<TimerUIStyler>();
         if (styler != null)
             styler.ResetStylerState();
     }
